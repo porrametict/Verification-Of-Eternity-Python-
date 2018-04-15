@@ -1,4 +1,4 @@
-import getResult as gr
+#import getResult as gr
 def CheckEternity(Postfix=""):
     expression = "pq&!r|s>sr|%" #Postfix
     output = True  # เป็นสัจนิรันดิ์ หรือ ไม่เป็น 
@@ -63,27 +63,31 @@ def CheckEternity(Postfix=""):
     #รวมเข้า Expression to allElement
     for i in operand : # นิพจน์เดี่ยว
         allElement[i] = [ 0 for i in range(2**len(operand))]
-    for se in SubExpression :
+    for se in SubExpression : #โจยท์ย่อยๆ
         allElement[se]  = [0 for i in range(2**len(operand))]
-    return allElement , operand
+    return allElement , operand #dict เเละ list
 DE,operand = CheckEternity()
 def getval(dictElement,SingleOperand):
-    n = 0
-    forChange = len(SingleOperand)-1
+    n = 0 
+    forChange = len(SingleOperand)-1 #เอาไว้ตัวยกกำลัง 
     lenSO = len(SingleOperand)
     #  กำหนดค่าให้กับตัวเเปรเดียว
     dElement = dictElement
     #ประพจน์ปัจจุบัน
     while n < lenSO :
-        thisVal = SingleOperand[n]
-        countChange = 1
+        thisVal = SingleOperand[n]  # key 
+        nowAssign = True #ค่าที่กำลัง เเอด ลงไนดิก
+        countChange = 0 # นับรอบใน For loop 
+        valChange = (2**(forChange-n)) #ตัวที่ยกำลังเสร็จเเล้ว เอาไว้เป็น เพดานการเปลี่ยน
         for i in range(len(dElement[thisVal])):#วนลูปในลิตvalueนั้นๆ
-            print(2**(forChange-n))
-            if countChange <= (2**(forChange-n)) :
-                dElement[thisVal][i] = True
-            else:
-                dElement[thisVal][i] = False 
+     #       print(valChange)
+            if countChange == valChange :
+                nowAssign = not(nowAssign)
+                countChange = 0
+            dElement[thisVal][i] =nowAssign
             countChange +=1 
         n+=1
-    print(dElement)
-getval(DE,operand)
+    #print(dElement)
+    return dElement
+AfterAssignSingleOperand = getval(DE,operand)
+print(AfterAssignSingleOperand)
