@@ -11,7 +11,27 @@ def checkNum(text:str):
             return True
     else:
         return False
-
+def countOperand(text:str):
+    count = 0
+    for i in text :
+        if i.isalpha() :
+            count += 1
+    if count > 5 :
+        return True
+    else :
+        return False
+def countOperator(text:str):
+    count = 0
+    operator ="!%&>|"
+    for i in text :
+        if i in operator :
+            count += 1
+    if count >6 :
+        return True
+    else :
+        return False
+    
+        
 def checkOperand(text:str):
     operator ="()!%&>|"
     r = False
@@ -35,17 +55,24 @@ def checkBracket(text:str) :
   
 def inputfilter(textInput : str) :
     if textInput == "" :
-        print("A")
+        print("กรุณากรอกโจทย์ที่ถูกต้องตามเงื่อนไขครับ")
+        return False
+    elif checkNum(textInput):
+        print("กรุณากรอกโจทย์ที่ไม่มีตัวเลขครับ")
+        return False    
+    elif countOperand(textInput):
+        print("กรุณากรอกโจทย์ที่มีนิพจน์ซ้อนกันไม่เกิน 4 ตัวครับ")
+        return False
+    elif countOperator(textInput):
+        print("กรุณากรอกโจทย์ที่มีโอเปอร์เรชั่นซ้อนกันไม่เกิน 6 ตัวครับ")
         return False
     elif checkOperand(textInput):
-        return False
-        print("C")
+        print("กรุณากรอกโจทย์ที่ถูกต้องตามเงื่อนไขครับ")
+        return False     
     elif checkBracket(textInput):
+        print("กรุณากรอกโจทย์โดยตรวจสอบวงเล็บอีกรอบครับ") 
         return False
-        print("D")  
-    elif checkNum(textInput):
-        return False
-        print("F")
+      
     else:
         return textInput
 #

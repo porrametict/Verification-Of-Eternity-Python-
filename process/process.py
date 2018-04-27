@@ -5,6 +5,7 @@ import getSubExpression as gse
 import getOperandVal as gopv
 import getSubExpressionVal as gsev
 import getEternityChecked as gec
+import writefile as wf
 
 class checkEternity():
     def Eternity(self):
@@ -20,7 +21,10 @@ class checkEternity():
         #print(completeDict)
         sortedExpression = gde.sortSubExpression(subExpression)
         #print(sortedExpression)
+       
         result = "ประพจน์นี้ "+gec.eternityCheck(completeDict,sortedExpression)
+        
+        wf.exportResultET(self.expression,result,operand,sortedExpression,completeDict)
         return result
 
 
@@ -45,6 +49,9 @@ class checkEquivalent ():
         sortedExpression2 = gde.sortSubExpression(subExpression2)
         #print(sortedExpression)
         result = gec.equalCheck(completeDict1,completeDict2,sortedExpression1,sortedExpression2)
+        print(result)
+        wf.exportResultEV(self.expression,another.expression,result,operand1,operand2,sortedExpression1,sortedExpression2,completeDict1,completeDict2)
+
         return self.expression +" เเละ "+ another.expression + result
 
 #main
@@ -67,9 +74,10 @@ if choice == "1" :
           โปรดตรวจสอบวงเล็บให้ดีๆ เเละกรอกประพจน์โดยไม่มีช่องว่าง""")
     text = False
     while text == False:
-        text =nft.inputfilter((input("กรุณากรอกประพจน์เเรก :")).strip())
-    p.expression = text
-    print(p.Eternity())
+        text =nft.inputfilter((input("กรุณากรอกประพจน์ :")).strip())
+    else:
+        p.expression = text
+        print(p.Eternity())
 elif choice == "2" :
     p1 = checkEquivalent ()
     p2 = checkEquivalent ()
@@ -85,12 +93,14 @@ elif choice == "2" :
     text1 = False
     while text1 == False:
         text1 =nft.inputfilter((input("กรุณากรอกประพจน์เเรก :")).strip())
-    p1.expression = text1
+    else:
+        p1.expression = text1
     
     text2 = False
     while text2 == False:
-        text2 =nft.inputfilter((input("กรุณากรอกประพจน์เเรก :")).strip())
-    p2.expression = text2
+        text2 =nft.inputfilter((input("กรุณากรอกประพจน์สอง :")).strip())
+    else:
+        p2.expression = text2
     
     print(p1.Equivalent(p2))
 

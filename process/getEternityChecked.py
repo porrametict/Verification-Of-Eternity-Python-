@@ -12,7 +12,7 @@ def eternityCheck (completeDict:dict,sortedExpreesion:list):
 #print(r)
 def equalCheck (Dict1:dict,Dict2:dict,sortedExpreesion1:list,sortedExpreesion2:list) :
     data1 = [x for x in Dict1[sortedExpreesion1[-1]]]
-    data2 = [x for x in Dict1[sortedExpreesion2[-1]]]
+    data2 = [x for x in Dict2[sortedExpreesion2[-1]]]
     #print("infuc",data1,data2)
     for v1,v2 in zip(data1,data2):
        # print(v1,v2)
