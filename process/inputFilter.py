@@ -29,17 +29,14 @@ def countOperator(text:str):
     if count >6 :
         return True
     else :
-        return False
-    
+        return False 
         
 def checkOperand(text:str):
     operator ="()!%&>|"
     r = False
     for i in text :       
         if (i not in operator) and not(i.isalpha())  :
-            r = False
-
-         
+            r = False       
     else:
         r = False
     return r
@@ -72,7 +69,7 @@ def inputfilter(textInput : str) :
     elif checkBracket(textInput):
         print("กรุณากรอกโจทย์โดยตรวจสอบวงเล็บอีกรอบครับ") 
         return False
-      
+  
     else:
         return textInput
 #

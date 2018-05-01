@@ -9,50 +9,56 @@ import writefile as wf
 
 class checkEternity():
     def Eternity(self):
-        postfix = gpf.INfixToPostfix(self.expression)
-        #print(postfix)
-        operand,subExpression = gse.getSubExpression(postfix)
-        #print(operand,subExpression)
-        dictElement = gde.getDictElement(operand,subExpression)
-        #print(dictElement)
-        dictElement = gopv.getOperandVal(operand,dictElement)
-        #print(dictElement)
-        completeDict = gsev.getSubExpressionVal(operand,dictElement)
-        #print(completeDict)
-        sortedExpression = gde.sortSubExpression(subExpression)
-        #print(sortedExpression)
-       
-        result = "ประพจน์นี้ "+gec.eternityCheck(completeDict,sortedExpression)
-        
-        wf.exportResultET(self.expression,result,operand,sortedExpression,completeDict)
-        return result
+        try :
+            postfix = gpf.INfixToPostfix(self.expression)
+            #print(postfix)
+            operand,subExpression = gse.getSubExpression(postfix)
+            #print(operand,subExpression)
+            dictElement = gde.getDictElement(operand,subExpression)
+            #print(dictElement)
+            dictElement = gopv.getOperandVal(operand,dictElement)
+            #print(dictElement)
+            completeDict = gsev.getSubExpressionVal(operand,dictElement)
+            #print(completeDict)
+            sortedExpression = gde.sortSubExpression(subExpression)
+            #print(sortedExpression)
+           
+            result = "ประพจน์นี้ "+gec.eternityCheck(completeDict,sortedExpression)
+            
+            wf.exportResultET(self.expression,result,operand,sortedExpression,completeDict)
+            return result
+        except Exception as e:
+            return "ขออภัยโปรเเกรมไม่สามารถคำนวณได้ เนื่องจาก {}".format(e)
 
 
 class checkEquivalent ():
      def Equivalent(self,another:"checkEquivalent"):
-        postfix1 = gpf.INfixToPostfix(self.expression)
-        postfix2 = gpf.INfixToPostfix(another.expression)
-        #print(postfix)
-        operand1,subExpression1 = gse.getSubExpression(postfix1)
-        operand2,subExpression2 = gse.getSubExpression(postfix2)
-        #print(operand,subExpression)
-        dictElement1 = gde.getDictElement(operand1,subExpression1)
-        dictElement2 = gde.getDictElement(operand2,subExpression2)
-        #print(dictElement)
-        dictElement1 = gopv.getOperandVal(operand1,dictElement1)
-        dictElement2 = gopv.getOperandVal(operand2,dictElement2)
-        #print(dictElement)
-        completeDict1 = gsev.getSubExpressionVal(operand1,dictElement1)
-        completeDict2 = gsev.getSubExpressionVal(operand2,dictElement2)
-        #print(completeDict)
-        sortedExpression1 = gde.sortSubExpression(subExpression1)
-        sortedExpression2 = gde.sortSubExpression(subExpression2)
-        #print(sortedExpression)
-        result = gec.equalCheck(completeDict1,completeDict2,sortedExpression1,sortedExpression2)
-        print(result)
-        wf.exportResultEV(self.expression,another.expression,result,operand1,operand2,sortedExpression1,sortedExpression2,completeDict1,completeDict2)
-
-        return self.expression +" เเละ "+ another.expression + result
+        try :
+            postfix1 = gpf.INfixToPostfix(self.expression)
+            postfix2 = gpf.INfixToPostfix(another.expression)
+            #print(postfix)
+            operand1,subExpression1 = gse.getSubExpression(postfix1)
+            operand2,subExpression2 = gse.getSubExpression(postfix2)
+            #print(operand,subExpression)
+            dictElement1 = gde.getDictElement(operand1,subExpression1)
+            dictElement2 = gde.getDictElement(operand2,subExpression2)
+            #print(dictElement)
+            dictElement1 = gopv.getOperandVal(operand1,dictElement1)
+            dictElement2 = gopv.getOperandVal(operand2,dictElement2)
+            #print(dictElement)
+            completeDict1 = gsev.getSubExpressionVal(operand1,dictElement1)
+            completeDict2 = gsev.getSubExpressionVal(operand2,dictElement2)
+            #print(completeDict)
+            sortedExpression1 = gde.sortSubExpression(subExpression1)
+            sortedExpression2 = gde.sortSubExpression(subExpression2)
+            #print(sortedExpression)
+            result = gec.equalCheck(completeDict1,completeDict2,sortedExpression1,sortedExpression2)
+            print(result)
+            wf.exportResultEV(self.expression,another.expression,result,operand1,operand2,sortedExpression1,sortedExpression2,completeDict1,completeDict2)
+    
+            return self.expression +" เเละ "+ another.expression + result
+        except Exception as e  :
+             return "ขออภัยโปรเเกรมไม่สามารถคำนวณได้ เนืองจาก {}".format(e)  
 
 #main
 
